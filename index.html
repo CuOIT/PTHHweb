@@ -1,14 +1,20 @@
 <html>
 <head>
 <title>Cân bằng phương trình hóa học</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="cssPTHH.css">
 </head>
 <body>
-    <form for="pthh"> Điền PTHH vào ô:
-        <input id="pthh" type="text" name="pthh">
-    </form>
-    <button onclick="kq('pthh')">Bấm đây để hiện kết quả</button>
-    <p id="1"></p>
+    <div class="hero">
+        <div class="form">
+                <input id="pthh" class="pthh__input" type="text" name="pthh" autocomplete="off" placeholder=" " > 
+                <label for="pthh" class="pthh__label">Phương trình</label>
+            <button class="canbangbutton" onclick="kq('pthh')">Cân bằng</button>
+            <p id="ketqua" ></p>
+            </div>
+        </div>
+    </div>
+    
 <script src="matran.js">
 // function ucln(a,b)
 // {
