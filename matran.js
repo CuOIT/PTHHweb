@@ -195,5 +195,5 @@ function canbang(pthh)
 function kq(idx)
 {   
     let pthhinput=document.getElementById(idx).value;
-    document.getElementById("1").innerHTML=canbang(pthhinput);
+    document.getElementById("ketqua").innerHTML=canbang(pthhinput);
 }  
