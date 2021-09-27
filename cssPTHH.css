@@ -1,4 +1,73 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Convergence',sans-serif;
+    box-sizing: border-box;
+}
+.hero{
+ background: #1d2026;
+ min-height: 100vh;
+ width: 100%; 
+ color: #fff;
+ position: relative;  
+}
 
-body{
+.canbangbutton{
+    position: relative;
+    top:15px;
+    bottom: 0;
+    background: wheat;
+    height: 40px;
+    width: 20%;
+    border-radius: 20px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+}
+
+.form{
+    position: absolute;
+    left: 5%;
+    width:50%;
+}
+.pthh__input{
+
+position: relative;
+top:15px;
+bottom: 0;
+padding: 9px;
+width: 70%;
+height: 100%;
+border: 2px solid gray;
+border-radius: 10px;
+font-size: inherit;
+background:none;
+font-family: inherit;
+color: white;
+outline: none;
+}  
+.pthh__input:hover{
+    border-color: lightskyblue;
+}
+.pthh__label{
+position: absolute;
+background-color:#1d2026;
+left: 6rem;
+top: 1.6rem;
+padding: 0 0.5rem;
+color:white;
+cursor: text;
+transition: top 200ms ease-in,left 200ms ease-in,font-size 200ms ease-in;
+}
+#ketqua{
+    position: relative;
+    top :35px;
     color: red;
+    margin: 10px;
+}
+.pthh__input:focus ~ .pthh__label
+,.pthh__input:not(:placeholder-shown).pthh__input:not(:focus) ~ .pthh__label {
+    top: 0.5rem;
+    left:0.7rem;
+    font-size: 0.8rem;
 }
