@@ -4,13 +4,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="cssPTHH.css">
 <link rel="icon" href="image/CuO.jpg">
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="hero">
+        
         <div class="head">
-            <img src="image/chinh_giua.png" alt="logo" id="logo">
-            <img src="image/chinh_giua.png" alt="giua" id="giua">
+            <img src="image/chinh_giua.png" alt="logo" id="logo">        
+            
             <ul class="chuc_nang">
                 <li class="chuc_nang_con">Cân bằng PTHH</li>
                 <li class="chuc_nang_con" onclick="coming()">Giải hệ phương trình</li>
@@ -19,27 +25,34 @@
             </ul>
             
         </div>
-        <div class="chu_thich">
-            <l class="luu_y">Lưu ý</l>
-                <l>Các nguyên tố hóa học phải viết hoa chữ cái đầu.
-                    <span>VD: Fe, Mg, C, Mn,...</span>
-                </l>
-                <l>
-                    Sử dụng dấu "=" để ngăn cách chất tham gia và chất sản phẩm.VD: Cu+O2=CuO
-                </l>
-                <l>
-                    Phương trình nhập vào phải đảm bảo tồn tại và đúng với Định luật Bảo toàn Nguyên tố.
-                </l>
-    
-        </div>
-        <div class="form">
-                <img src="image/lady_chemistry.png" alt="lady" class="lady">
-                <input id="pthh" class="pthh__input" type="text" name="pthh" autocomplete="off" placeholder=" " > 
-                <label for="pthh" class="pthh__label">Phương trình</label>
-            <button class="canbangbutton" onclick="kq('pthh')">Cân bằng</button>
-            <button class="lam_moi_button" onclick="lammoi()">Làm mới</button>
+        <div class="center">
 
-            <div id="ketqua" >Kết quả</div>
+            <div class="giua"><img src="image/chinh_giua.png" alt="giua" id="logo_giua"></div>
+                <div class="chu_thich">
+                    <l class="luu_y">Lưu ý</l>
+                    <l>Các nguyên tố hóa học phải viết hoa chữ cái đầu.
+                       
+                    </l>
+                    <l>
+                        Sử dụng dấu "=" để ngăn cách chất tham gia và chất sản phẩm.VD: Cu+O2=CuO
+                    </l>
+                    <l>
+                        Phương trình nhập vào phải đảm bảo tồn tại và đúng với Định luật Bảo toàn Nguyên tố.
+                    </l>
+        
+            </div>
+
+
+            <div class="form">
+                    <img src="image/lady_chemistry.png" alt="lady" class="lady">
+                    <input id="pthh" class="pthh__input" type="text" name="pthh" autocomplete="off" placeholder=" " > 
+                    <label for="pthh" class="pthh__label">Phương trình</label>
+                <button class="canbangbutton" onclick="kq('pthh')">Cân bằng</button>
+                <label  for="ketqua" class="ketqua__label">Kết quả</label>
+                <button class="lam_moi_button" onclick="lammoi()">Làm mới</button>
+
+                <div id="ketqua" ></div>
+                </div>
             </div>
         </div>
     </div>

@@ -182,6 +182,7 @@ function canbang(pthh)
     matrix.push(lst)
     let bt=bacThang(matrix);
     let no=giai(bt);
+    if(no.some(function (value){return isNaN(value); })) return "";
     let kq="";
     for(let i=0;i<chat.length;i++)
     {
@@ -199,10 +200,11 @@ function kq(idx)
 }  
 function lammoi()
 {
-    document.getElementById("ketqua").innerHTML="Kết quả";
+    document.getElementById("ketqua").innerHTML="";
     //document.getElementById("pthh").innerHTML="ádas";
 }
 function coming()
 {
     window.alert("Coming soon!");
 }
+
