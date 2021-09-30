@@ -197,3 +197,8 @@ function kq(idx)
     let pthhinput=document.getElementById(idx).value;
     document.getElementById("ketqua").innerHTML=canbang(pthhinput);
 }  
+function lammoi()
+{
+    document.getElementById("ketqua").innerHTML="Kết quả";
+    //document.getElementById("pthh").innerHTML="ádas";
+}
