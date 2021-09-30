@@ -202,3 +202,7 @@ function lammoi()
     document.getElementById("ketqua").innerHTML="Kết quả";
     //document.getElementById("pthh").innerHTML="ádas";
 }
+function coming()
+{
+    window.alert("Coming soon!");
+}
