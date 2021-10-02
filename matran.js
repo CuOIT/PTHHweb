@@ -145,7 +145,7 @@ function mahoa(chat)
 }   
 function canbang(pthh)
 {   
-    pthh=pthh.replace(" ","");
+    pthh=pthh.replace(/\s/g,"");
     var nguyento=pthh.match(/[A-Z][a-z]*/g);
     nguyento=new Set(nguyento);
     nguyento=Array.from(nguyento);
@@ -188,8 +188,8 @@ function canbang(pthh)
     {
         if(no[i]!=1) kq=kq+no[i];
         kq=kq+chat[i];
-        if(i==thamgia.length-1) kq+="=";
-        else if(i!=chat.length-1) kq+="+";
+        if(i==thamgia.length-1) kq+=" = ";
+        else if(i!=chat.length-1) kq+=" + ";
     }
     return kq;
 }  
