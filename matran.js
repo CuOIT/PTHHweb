@@ -201,7 +201,8 @@ function kq(idx)
 function lammoi()
 {
     document.getElementById("ketqua").innerHTML="";
-    //document.getElementById("pthh").innerHTML="ádas";
+    //document.getElementById("").oninput="";
+    document.querySelector('#pthh').value = '';
 }
 function coming()
 {
