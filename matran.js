@@ -4,14 +4,14 @@ function ucln(a,b)
     if(b==0) return a;
     if(a<0) a=-a;
     if(b<0) b=-b;
-    if(b>a) 
+    if(b>a)
     {
         let c=a
             a=b
             b=c
     }
     for(let i=b;i>0;i--)
-        if( a%i==0 && b%i==0) return i; 
+        if( a%i==0 && b%i==0) return i;
 }
 function toiGian(arr)
 {
@@ -59,8 +59,8 @@ function bacThang(matrix)
     let n=matrix[0].length;
     let m=matrix.length;
     for(let i=0;i<=n-2;i++)
-    {   
-        if(matrix[i][i]==0 )
+    {
+        if(matrix[i][i]==0)
         {
             for(let j=i+1;j<m;j++) if(matrix[j][i]!=0)
             {
@@ -71,26 +71,20 @@ function bacThang(matrix)
             }
         }
         for(let j=i+1;j<m;j++)
-        {               
+        {
             let dau=matrix[j][i];
             for(let k=0;k<n;k++)
-            {   
+            {
                 matrix[j][k]=matrix[i][i]*matrix[j][k]-dau*matrix[i][k];
             }
         }
     }
-    // for(let i=m-1;i>0;i--)
-    // {
-    //     if(matrix[i]==matrix[i-1] || matrix[i].every(function(value){return value==0}))
-    //     delete matrix[i];
-    //     else matrix[i]=toiGian(matrix[i]);
-    // }
     while(matrix.length!=n-1) matrix.pop();
     matrix[0]=toiGian(matrix[0]);
     return matrix;
 }
 function giai(matrix)
-{  
+{
     let n=matrix.length;
     let matranheso=[];
     for(let i=0;i<n;i++)
@@ -111,15 +105,14 @@ function giai(matrix)
         D.push(dinhThuc(matrancon));
     }
     D=toiGian(D);
-    if(D[0]<0) D=D.map(function(value){
-        return Math.abs(value)
-    })
+    if(D[0]<0) D=D.map((value) => Math.abs(value));
     return D;
 }
 function mahoa(chat)
-
-{  
-    while(/[)]/.test(chat)) 
+{
+	// Khai triển các nguyên tố trong ngoặc.
+	// Ca(HCO3)2 => CaHCO3HCO3
+    while(/[(|)]/.test(chat))
     {
         let ngoac=/[(]([^()]+)[)][0-9]+/.exec(chat);
         let heso=/\d+$/.exec(ngoac[0]);
@@ -130,7 +123,9 @@ function mahoa(chat)
         }
         chat=chat.replace(ngoac[0],s);
     }
-    while(/\d/.test(chat)) 
+    // Khai triển nguyên tố.
+    // CaHCO3HCO3 => CaHCOOOHCOOO
+    while(/\d/.test(chat))
     {
         let nguyento=/([A-Z][a-z]*)\d+/.exec(chat);
         let heso=/\d+$/.exec(nguyento[0]);
@@ -142,62 +137,84 @@ function mahoa(chat)
         chat=chat.replace(nguyento[0],s)
     }
     return chat;
-}   
+}
 function canbang(pthh)
-{   
-    pthh=pthh.replace(/\s/g,"");
-    var nguyento=pthh.match(/[A-Z][a-z]*/g);
-    nguyento=new Set(nguyento);
-    nguyento=Array.from(nguyento);
+{
+	const elements = new RegExp("(A(c|g|l|m|r|s|t|u))"+
+	                            "|(B(a|e|h|k|i|r)?)"+
+                                "|(C(a|d|e|f|l|m|n|o|r|s|u)?)"+
+                                "|(D(b|s|y))|(E(r|s))"+
+                                "|(F(e|m|l|r)?)"+
+                                "|(G(a|d|e))"+
+                                "|(H(a|e|f|g|s|o)?)"+
+                                "|(I(n|r)?)|(K(r)?)"+
+                                "|(L(a|i|r|u|v))"+
+                                "|(M(c|d|g|n|o|t))"+
+                                "|(N(a|e|i)?)|(O(g|s)?)"+
+                                "|(P(a|b|d|m|o|r|t|u)?)"+
+                                "|(R(a|b|e|f|g|h|n|u))"+
+                                "|(S(b|c|e|g|i|m|n|r)?)"+
+                                "|(T(a|b|c|e|i|h|l|m|s)?)"+
+                                "|(U)|(V)|(W)|(Xe)"+
+                                "|(Y(b)?)|(Z(n|r))"
+                         );
+    var nguyento=pthh.replace(/\s/g).match(/[A-Z][a-z]*/g);
+   	if (!nguyento)
+   	    throw new SyntaxError(ErrorPrompt.Equation.MissingArgument);
+    nguyento=[...new Set(nguyento)];
+    var nguyentotontai = nguyento.filter((nt) => elements.test(nt));
+//   	console.log(nguyento, nguyentotontai);
+   	if (nguyentotontai.length != nguyento.length)
+   		throw new SyntaxError(ErrorPrompt.Equation.InvalidArgument);
     nguyento.sort().reverse();
-    let pthh1=pthh.split("=");//pthh1: array which contains two sides
+    let pthh1=pthh.split("=");
+    if (pthh1.length != 2)
+    	throw new SyntaxError(ErrorPrompt.Equation.TooManyArgument);
     let thamgia=pthh1[0].split("+");
     let sanpham=pthh1[1].split("+");
     let chat=thamgia.concat(sanpham);
-    const chatmahoa=chat.slice();
-    for(let i=0;i<chat.length;i++)
-     {
-         chatmahoa[i]=mahoa(chatmahoa[i]);
-     }
-    const matrix=[];
-    for(let i=0;i<nguyento.length;i++)
-    {
-        let lst=[];
-        for(let j=0;j<chat.length;j++)
-        {
-            let a=[...chatmahoa[j].matchAll(nguyento[i])].length;
-            chatmahoa[j]=chatmahoa[j].replaceAll(nguyento[i],"");
-            if(j<thamgia.length) lst.push(a);
+	const chatmahoa = chat.map(elem => mahoa(elem));
+//    console.log(chat, chatmahoa);
+    let matrix=[];
+    nguyento.forEach((nt) => {
+        let lst = [];
+        chatmahoa.forEach((entry, idx) => {
+            let a = [...entry.matchAll(nt)].length;
+            entry = entry.replaceAll(nt,"");
+            if (idx < thamgia.length) lst.push(a);
             else lst.push(-a);
-        }
+        });
         lst.push(0);
         matrix.push(lst);
-    }
-    let lst=[];
-    for(let i=0;i<=chat.length;i++)
-    {
-        if(i==0 || i==chat.length) lst.push(1);
-        else lst.push(0);
-    }
-    matrix.push(lst)
+	});
+    let lst = Array(chat.length+1);
+    lst.fill(0);
+    lst[0] = lst[chat.length] = 1;
+    matrix.push(lst);
+//    console.log(matrix);
     let bt=bacThang(matrix);
     let no=giai(bt);
-    if(no.some(function (value){return isNaN(value); })) return "";
+    if(no.some((value) => isNaN(value))) return "";
     let kq="";
-    for(let i=0;i<chat.length;i++)
-    {
-        if(no[i]!=1) kq=kq+no[i];
-        kq=kq+chat[i];
-        if(i==thamgia.length-1) kq+=" = ";
-        else if(i!=chat.length-1) kq+=" + ";
-    }
+    chat.forEach((entry, idx) => {
+		if(no[idx]!=1) kq=kq+no[idx];
+        kq=kq+entry;
+        if(idx==thamgia.length-1) kq+=" = ";
+        else if(idx!=chat.length-1) kq+=" + ";
+    });
     return kq;
-}  
+}
 function kq(idx)
-{   
+{
     let pthhinput=document.getElementById(idx).value;
-    document.getElementById("ketqua").innerHTML=canbang(pthhinput);
-}  
+    try
+    {
+    	let ketqua=canbang(pthhinput);
+    	document.getElementById("ketqua").innerHTML=ketqua;
+    } catch (err) {
+       	console.error(err.name, ":", err.message);
+    }
+}
 function lammoi()
 {
     document.getElementById("ketqua").innerHTML="";
@@ -208,4 +225,3 @@ function coming()
 {
     window.alert("Coming soon!");
 }
-
